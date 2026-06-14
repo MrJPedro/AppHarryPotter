@@ -7,13 +7,81 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <Button
+        android:id="@+id/sairButton"
+        android:layout_width="333dp"
+        android:layout_height="38dp"
+        android:outlineAmbientShadowColor="@color/design_default_color_error"
+        android:outlineProvider="background"
+        android:outlineSpotShadowColor="@color/design_default_color_error"
+        android:shadowColor="#FF1010"
+        android:text="Sair"
+        android:textColor="@color/design_default_color_background"
+        android:textColorHighlight="@color/design_default_color_error"
+        android:textColorLink="@color/design_default_color_error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/listarEstudantesButton"
+        app:layout_constraintVertical_bias="0.845"
+        app:rippleColor="@color/design_default_color_error"
+        app:strokeColor="@color/design_default_color_error" />
+
+    <Button
+        android:id="@+id/listarFeiticosButton"
+        android:layout_width="333dp"
+        android:layout_height="38dp"
+        android:text="Listar Feitiços"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listarEstudantesButton"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <Button
+        android:id="@+id/listarEstudantesButton"
+        android:layout_width="333dp"
+        android:layout_height="38dp"
+        android:text="Listar Estudantes da Escola"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listarProfessorButton"
+        app:layout_constraintVertical_bias="0.095" />
+
+    <Button
+        android:id="@+id/listarProfessorButton"
+        android:layout_width="333dp"
+        android:layout_height="38dp"
+        android:text="Listar Professor da Escola"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listarPersonagensButton"
+        app:layout_constraintVertical_bias="0.073" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harry Potter App"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.077" />
+
+    <Button
+        android:id="@+id/listarPersonagensButton"
+        android:layout_width="333dp"
+        android:layout_height="38dp"
+        android:text="Listar Personagens por ID"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.107" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

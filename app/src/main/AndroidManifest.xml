@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppHarryPotter">
         <activity
+            android:name=".ListarFeiticosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListarEstudanteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListarProfessorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListarPersonagemActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
