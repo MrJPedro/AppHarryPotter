@@ -17,6 +17,9 @@
             android:name=".ListarFeiticosActivity"
             android:exported="false" />
         <activity
+            android:name=".DetalhesFeiticoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListarEstudanteActivity"
             android:exported="false" />
         <activity

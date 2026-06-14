@@ -35,7 +35,7 @@ class ListarEstudanteActivity : AppCompatActivity() {
             insets
         }
 
-        radioGroup = findViewById(R.id.radioGroupCasas)
+        radioGroup = findViewById(R.id.radioGroup)
         buscarButton = findViewById(R.id.buscarEstudantesButton)
         recyclerView = findViewById(R.id.recyclerViewEstudantes)
 
@@ -50,10 +50,10 @@ class ListarEstudanteActivity : AppCompatActivity() {
 
     private fun buscarEstudantes() {
         val casa = when (radioGroup.checkedRadioButtonId) {
-            R.id.radioGryffindor -> "Gryffindor"
-            R.id.radioSlytherin  -> "Slytherin"
-            R.id.radioHufflepuff -> "Hufflepuff"
-            R.id.radioRavenclaw  -> "Ravenclaw"
+            R.id.gryffindorRadioButton -> "Gryffindor"
+            R.id.SlytherinRadioButton  -> "Slytherin"
+            R.id.hufflepuffRadioButton -> "Hufflepuff"
+            R.id.RavenclawRadioButton  -> "Ravenclaw"
             else -> {
                 Toast.makeText(this, "Selecione uma casa.", Toast.LENGTH_SHORT).show()
                 return

@@ -1,9 +1,8 @@
 package com.example.appharrypotter
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,80 +11,65 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appharrypotter.adapter.EstudanteAdapter
+import com.example.appharrypotter.adapter.FeiticoAdapter
 import com.example.appharrypotter.api.HarryPotterService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ListarEstudanteActivity : AppCompatActivity() {
+class ListarFeiticosActivity : AppCompatActivity() {
 
-    private lateinit var radioGroup: RadioGroup
-    private lateinit var buscarButton: Button
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: EstudanteAdapter
+    private lateinit var adapter: FeiticoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_listar_estudante)
+        setContentView(R.layout.activity_listar_feiticos)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        radioGroup = findViewById(R.id.radioGroup)
-        buscarButton = findViewById(R.id.buscarEstudantesButton)
-        recyclerView = findViewById(R.id.recyclerViewEstudantes)
-
-        adapter = EstudanteAdapter(emptyList())
+        recyclerView = findViewById(R.id.recyclerViewFeiticos)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        
+        adapter = FeiticoAdapter(emptyList()) { feitico ->
+            val intent = Intent(this, DetalhesFeiticoActivity::class.java)
+            intent.putExtra("nome", feitico.name)
+            intent.putExtra("descricao", feitico.description)
+            startActivity(intent)
+        }
+        
         recyclerView.adapter = adapter
 
-        buscarButton.setOnClickListener {
-            buscarEstudantes()
-        }
+        buscarFeiticos()
     }
 
-    private fun buscarEstudantes() {
-        val casa = when (radioGroup.checkedRadioButtonId) {
-            R.id.gryffindorRadioButton -> "Gryffindor"
-            R.id.hufflepuffRadioButton -> "Hufflepuff"
-            R.id.RavenclawRadioButton  -> "Ravenclaw"
-            R.id.SlytherinRadioButton  -> "Slytherin"
-            else -> {
-                Toast.makeText(this, "Selecione uma casa.", Toast.LENGTH_SHORT).show()
-                return
-            }
-        }
-
+    private fun buscarFeiticos() {
         lifecycleScope.launch {
             try {
-                buscarButton.isEnabled = false
-
-                val estudantes = withContext(Dispatchers.IO) {
-                    HarryPotterService.listarEstudantesDaCasa(casa)
+                val feiticos = withContext(Dispatchers.IO) {
+                    HarryPotterService.listarFeiticos()
                 }
 
-                adapter.atualizarLista(estudantes)
+                adapter.atualizarLista(feiticos)
 
-                if (estudantes.isEmpty()) {
+                if (feiticos.isEmpty()) {
                     Toast.makeText(
-                        this@ListarEstudanteActivity,
-                        "Nenhum estudante encontrado.",
+                        this@ListarFeiticosActivity,
+                        "Nenhum feitiço encontrado.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             } catch (e: Exception) {
-                Log.e("ListarEstudante", "Erro ao buscar estudantes", e)
+                Log.e("ListarFeiticos", "Erro ao buscar feitiços", e)
                 Toast.makeText(
-                    this@ListarEstudanteActivity,
-                    "Erro ao buscar estudantes.",
+                    this@ListarFeiticosActivity,
+                    "Erro ao buscar feitiços.",
                     Toast.LENGTH_SHORT
                 ).show()
-            } finally {
-                buscarButton.isEnabled = true
             }
         }
     }
